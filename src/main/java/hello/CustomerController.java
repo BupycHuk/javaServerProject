@@ -36,6 +36,12 @@ public class CustomerController {
         return customer;
     }
 
+    @RequestMapping(value = "/delete/{id}")
+    public @ResponseBody Customer deleteUser(@PathVariable("id") long id) {
+        getRepository().delete(id);
+        return null;
+    }
+
     public CustomerRepository getRepository() {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         CustomerRepository customerRepository = context.getBean(CustomerRepository.class);
