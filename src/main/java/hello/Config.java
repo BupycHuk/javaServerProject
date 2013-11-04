@@ -44,7 +44,6 @@ public class Config {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
-        lef.setJpaProperties(getJpaProperties());
         lef.setJpaVendorAdapter(jpaVendorAdapter);
         lef.setPackagesToScan("hello");
         return lef;
@@ -63,15 +62,5 @@ public class Config {
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
-    }
-    private Properties getJpaProperties() {
-        return new Properties() {
-            {
-                setProperty("hibernate.hbm2ddl.auto", "update");
-                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                setProperty("hibernate.show_sql", "true");
-                setProperty("hibernate.format_sql", "true");
-            }
-        };
     }
 }
