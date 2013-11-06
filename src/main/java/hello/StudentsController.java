@@ -22,13 +22,11 @@ public class StudentsController {
     public @ResponseBody
     Iterable<Students> listGroupStudents(@PathVariable("GroupName") String name) {
 
-        Iterable<Students> byGroupName = getRepository().findByGroupName(name);
-        return byGroupName;
+        return getRepository().findByGroupName(name);
     }
 
     public StudentsRepository getRepository() {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        StudentsRepository studentsRepository = context.getBean(StudentsRepository.class);
-        return studentsRepository;
+        return context.getBean(StudentsRepository.class);
     }
 }
