@@ -30,9 +30,8 @@ public class Students {
         this.id = Id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "groupId")
-    @JsonIgnore
     private Groups groups;
 
     public Groups getGroups() {
